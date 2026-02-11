@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- 🔥 Google Search Console 인증 -->
+  <meta name="google-site-verification" content="Q0P4SoUi3d776IVGqowZrQwqcGLKDd4nE8WMlmkJ1os" />
+
+  <!-- SEO 기본 -->
+  <title>FPS Aim Trainer - Free Online Aim Practice Game</title>
+  <meta name="description" content="Free online FPS aim trainer. Improve your mouse accuracy, reaction speed, and precision with Challenger Mode." />
+  <meta name="keywords" content="FPS aim trainer, aim practice, mouse accuracy game, reaction speed test, FPS training" />
+  <meta name="author" content="FPS Aim Trainer" />
+
+  <!-- Open Graph (공유 최적화) -->
+  <meta property="og:title" content="FPS Aim Trainer" />
+  <meta property="og:description" content="Train your aim and improve your FPS skills online for free." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fps-aim-trainer-gm2w.vercel.app/" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<header>
+  <h1>FPS Aim Trainer</h1>
+  <button id="darkToggle">🌙</button>
+</header>
+<nav class="top-menu">
+  <a href="about.html">About</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="terms.html">Terms</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<main>
+  <section class="game">
+    <h2>Challenger Mode</h2>
+    <p>타겟을 최대한 빠르고 정확하게 맞추세요</p>
+
+    <button id="startBtn">Start Challenger Mode</button>
+
+    <div id="gameArea"></div>
+
+    <div id="stats">
+      <p>Score: <span id="score">0</span></p>
+      <p>Time: <span id="time">30</span>s</p>
+      <p>Accuracy: <span id="accuracy">0%</span></p>
+    </div>
+  </section>
+
+  <!-- PC 광고 자리 -->
+  <aside class="ad-pc">
+    AD
+  </aside>
+</main>
+
+<!-- 모바일 하단 광고 -->
+<footer class="ad-mobile">
+  AD
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

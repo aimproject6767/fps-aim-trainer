@@ -1,0 +1,222 @@
+/* ============================= */
+/* 기본 세팅 */
+/* ============================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+  color: #111;
+  transition: 0.3s;
+}
+
+/* ============================= */
+/* 다크모드 */
+/* ============================= */
+
+body.dark {
+  background: #0f1923;
+  color: #ffffff;
+}
+
+/* ============================= */
+/* 헤더 */
+/* ============================= */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(90deg, #ff4655, #ff7b89);
+  color: white;
+}
+
+body.dark header {
+  background: linear-gradient(90deg, #1f2a36, #111);
+}
+
+header h1 {
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+#darkToggle {
+  background: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+body.dark #darkToggle {
+  background: #333;
+  color: white;
+}
+
+/* ============================= */
+/* 상단 메뉴 */
+/* ============================= */
+
+.top-menu {
+  margin-top: 10px;
+}
+
+.top-menu a {
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
+  font-size: 14px;
+}
+
+.top-menu a:hover {
+  opacity: 0.8;
+}
+
+/* ============================= */
+/* 메인 */
+/* ============================= */
+
+main {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+.game {
+  flex: 3;
+  text-align: center;
+  padding: 20px;
+}
+
+.game p {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* ============================= */
+/* 버튼 */
+/* ============================= */
+
+button {
+  background: #ff4655;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* ============================= */
+/* 게임 영역 */
+/* ============================= */
+
+#gameArea {
+  position: relative;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  background: #e1e5f2;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+body.dark #gameArea {
+  background: #1f2a36;
+}
+
+/* 타겟 */
+
+.target {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #ff4655;
+  border-radius: 50%;
+  cursor: crosshair;
+}
+
+/* ============================= */
+/* 통계 */
+/* ============================= */
+
+#stats {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* ============================= */
+/* 광고 */
+/* ============================= */
+
+.ad-pc {
+  flex: 1;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  min-height: 300px;
+  font-weight: bold;
+}
+
+body.dark .ad-pc {
+  background: #2a2a2a;
+}
+
+.ad-mobile {
+  display: none;
+  background: #ddd;
+  text-align: center;
+  padding: 15px;
+  font-weight: bold;
+}
+
+body.dark .ad-mobile {
+  background: #2a2a2a;
+}
+
+/* ============================= */
+/* 모바일 최적화 */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  main {
+    flex-direction: column;
+  }
+
+  .ad-pc {
+    display: none;
+  }
+
+  .ad-mobile {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  #gameArea {
+    height: 300px;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
