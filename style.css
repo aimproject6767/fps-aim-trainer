@@ -1,100 +1,94 @@
 body {
   margin: 0;
-  background: radial-gradient(circle at center, #0f1b2e, #05080f);
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   color: white;
   text-align: center;
-  cursor: crosshair;
 }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 30px;
+header {
+  padding: 20px;
+  font-size: 24px;
+  letter-spacing: 2px;
 }
 
-h1 {
-  letter-spacing: 4px;
+.modeSelect {
   margin-bottom: 20px;
 }
 
-.controls {
-  margin-bottom: 20px;
-}
-
-button {
-  padding: 10px 20px;
-  margin: 5px;
+.modeBtn {
+  padding: 10px 25px;
+  margin: 10px;
   border-radius: 8px;
-  border: 1px solid #00eaff;
-  background: rgba(0,234,255,0.1);
-  color: #00eaff;
+  border: none;
   cursor: pointer;
+  font-weight: bold;
   transition: 0.3s;
 }
 
-button:hover {
-  background: rgba(0,234,255,0.3);
-  box-shadow: 0 0 10px #00eaff;
+.modeBtn:hover {
+  transform: scale(1.1);
 }
 
-.mode.active {
-  background: rgba(0,234,255,0.4);
-}
-
-#gameArea {
-  width: 100%;
-  height: 600px;
-  background: #0b1320;
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 40px rgba(0,234,255,0.2);
-}
-
-.target {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #00eaff, #007a99);
-  border-radius: 50%;
-  box-shadow: 0 0 15px #00eaff;
-  cursor: pointer;
-  transition: transform 0.05s;
-}
-
-.target:active {
-  transform: scale(0.85);
+.gameSection {
+  width: 900px;
+  margin: auto;
 }
 
 .hud {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  text-align: left;
-  background: rgba(0,0,0,0.6);
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 14px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
-.combo-bar-bg {
-  width: 150px;
-  height: 8px;
-  background: #222;
-  border-radius: 10px;
-  margin-top: 5px;
+#gameArea {
+  width: 900px;
+  height: 500px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 15px;
+  position: relative;
   overflow: hidden;
 }
 
-.combo-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #00eaff, #0077ff);
-  transition: width 0.2s;
+.target {
+  width: 50px;
+  height: 50px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  cursor: crosshair;
+  transition: transform 0.1s;
 }
 
-.result {
-  margin-top: 25px;
-  font-size: 18px;
+.target:hover {
+  transform: scale(1.2);
 }
+
+canvas {
+  margin-top: 30px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 10px;
+}
+
+.resultCard {
+  margin-top: 30px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(15, 20, 30, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 234, 255, 0.2);
+  box-shadow: 0 0 30px rgba(0, 234, 255, 0.2);
+}
+
+.rankBadge {
+  font-size: 80px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.rank-S { color: gold; }
+.rank-A { color: #00eaff; }
+.rank-B { color: #4caf50; }
+.rank-C { color: orange; }
+.rank-D { color: red; }
