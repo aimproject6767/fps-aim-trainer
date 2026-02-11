@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>FPS Aim Trainer - PC</title>
-  <meta name="description" content="PC 전용 FPS Aim Trainer. Improve your aim like Aim Lab.">
-  <meta name="robots" content="index, follow">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FPS Aim Trainer</title>
+
+  <!-- Google Search Console -->
+  <meta name="google-site-verification" content="Q0P4SoUi3d776IVGqowZrQwqcGLKDd4nE8WMlmkJ1os" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<div class="container">
+<header>
+  <h1>FPS Aim Trainer</h1>
+  <button id="darkToggle">🌙</button>
+</header>
 
-  <h1>FPS AIM TRAINER</h1>
+<main>
 
-  <div class="controls">
-    <button id="startBtn">START</button>
+  <section class="modeSelect">
+    <button class="modeBtn" data-mode="easy">Easy</button>
+    <button class="modeBtn" data-mode="hard">Hard</button>
+    <button class="modeBtn" data-mode="pro">Pro</button>
+  </section>
 
-    <div class="mode-buttons">
-      <button class="mode active" data-mode="easy">EASY</button>
-      <button class="mode" data-mode="hard">HARD</button>
-      <button class="mode" data-mode="pro">PRO</button>
-    </div>
-  </div>
-
-  <div id="gameArea">
+  <section class="gameSection">
     <div class="hud">
-      <div>Score: <span id="score">0</span></div>
-      <div>Combo: <span id="combo">0</span></div>
-      <div>Best Combo: <span id="bestCombo">0</span></div>
-      <div>Avg Reaction: <span id="avgTime">0</span> ms</div>
-
-      <div class="combo-bar-bg">
-        <div id="comboBar" class="combo-bar"></div>
-      </div>
+      <span>Score: <b id="score">0</b></span>
+      <span>Combo: <b id="combo">0</b></span>
+      <span>High: <b id="highScore">0</b></span>
     </div>
-  </div>
 
-  <div id="result" class="result"></div>
+    <div id="gameArea"></div>
 
-</div>
+    <canvas id="reactionChart"></canvas>
+
+    <div id="result" class="resultCard"></div>
+  </section>
+
+</main>
 
 <script src="script.js"></script>
 </body>
