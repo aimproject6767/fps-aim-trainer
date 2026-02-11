@@ -1,39 +1,29 @@
 const gameArea = document.getElementById("gameArea");
-const startBtn = document.getElementById("startBtn");
-const scoreDisplay = document.getElementById("score");
-const comboDisplay = document.getElementById("combo");
-const bestComboDisplay = document.getElementById("bestCombo");
-const avgTimeDisplay = document.getElementById("avgTime");
-const comboBar = document.getElementById("comboBar");
+const scoreEl = document.getElementById("score");
+const comboEl = document.getElementById("combo");
+const highScoreEl = document.getElementById("highScore");
 const result = document.getElementById("result");
-const modeButtons = document.querySelectorAll(".mode");
+const chartCanvas = document.getElementById("reactionChart");
+const ctx = chartCanvas.getContext("2d");
 
 let score = 0;
 let combo = 0;
 let bestCombo = 0;
+let highScore = localStorage.getItem("aimHighScore") || 0;
 let totalShots = 0;
 let totalHits = 0;
 let reactionTimes = [];
 let gameInterval;
-let targetTimeout;
-let mode = "easy";
-let spawnTime;
+let currentMode = "easy";
 
-const settings = {
-  easy: { spawn: 1200, life: 1500 },
-  hard: { spawn: 800, life: 1000 },
-  pro:  { spawn: 600, life: 700 }
-};
+highScoreEl.textContent = highScore;
 
-modeButtons.forEach(btn => {
+document.querySelectorAll(".modeBtn").forEach(btn => {
   btn.addEventListener("click", () => {
-    modeButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    mode = btn.dataset.mode;
+    currentMode = btn.dataset.mode;
+    startGame();
   });
 });
-
-startBtn.addEventListener("click", startGame);
 
 function startGame() {
   score = 0;
@@ -42,86 +32,114 @@ function startGame() {
   totalShots = 0;
   totalHits = 0;
   reactionTimes = [];
-  result.textContent = "";
-
+  result.innerHTML = "";
   updateHUD();
 
   clearInterval(gameInterval);
-  gameInterval = setInterval(spawnTarget, settings[mode].spawn);
+
+  let spawnRate = 1500;
+  if (currentMode === "hard") spawnRate = 1000;
+  if (currentMode === "pro") spawnRate = 700;
+
+  gameInterval = setInterval(spawnTarget, spawnRate);
 
   setTimeout(endGame, 30000);
 }
 
 function spawnTarget() {
-  removeTarget();
-  totalShots++;
-
   const target = document.createElement("div");
   target.classList.add("target");
 
-  const size = 50;
-  const maxX = gameArea.clientWidth - size;
-  const maxY = gameArea.clientHeight - size;
+  const size = 40 + Math.random() * 30;
+  target.style.width = size + "px";
+  target.style.height = size + "px";
 
-  target.style.left = Math.random() * maxX + "px";
-  target.style.top = Math.random() * maxY + "px";
+  target.style.left = Math.random() * (850 - size) + "px";
+  target.style.top = Math.random() * (450 - size) + "px";
 
-  spawnTime = Date.now();
+  gameArea.appendChild(target);
+
+  const appearTime = Date.now();
 
   target.addEventListener("click", () => {
-    const reaction = Date.now() - spawnTime;
+    const reaction = Date.now() - appearTime;
     reactionTimes.push(reaction);
 
     score++;
     combo++;
     totalHits++;
+    totalShots++;
+    bestCombo = Math.max(bestCombo, combo);
 
-    if (combo > bestCombo) bestCombo = combo;
-
+    target.remove();
     updateHUD();
-    removeTarget();
   });
 
-  gameArea.appendChild(target);
-
-  targetTimeout = setTimeout(() => {
-    if (target.parentNode) {
+  setTimeout(() => {
+    if (gameArea.contains(target)) {
+      target.remove();
       combo = 0;
+      totalShots++;
       updateHUD();
-      removeTarget();
     }
-  }, settings[mode].life);
-}
-
-function removeTarget() {
-  const existing = document.querySelector(".target");
-  if (existing) existing.remove();
+  }, 1500);
 }
 
 function updateHUD() {
-  scoreDisplay.textContent = score;
-  comboDisplay.textContent = combo;
-  bestComboDisplay.textContent = bestCombo;
+  scoreEl.textContent = score;
+  comboEl.textContent = combo;
+}
 
-  const avg = reactionTimes.length
-    ? Math.round(reactionTimes.reduce((a,b)=>a+b,0)/reactionTimes.length)
-    : 0;
-
-  avgTimeDisplay.textContent = avg;
-
-  comboBar.style.width = Math.min(combo * 10, 100) + "%";
+function calculateRank(score, accuracy) {
+  if (score >= 45 && accuracy >= 90) return "S";
+  if (score >= 35 && accuracy >= 80) return "A";
+  if (score >= 25 && accuracy >= 70) return "B";
+  if (score >= 15 && accuracy >= 60) return "C";
+  return "D";
 }
 
 function endGame() {
   clearInterval(gameInterval);
-  removeTarget();
 
-  const accuracy = totalShots ? Math.round((totalHits/totalShots)*100) : 0;
+  const accuracy = totalShots
+    ? Math.round((totalHits / totalShots) * 100)
+    : 0;
+
+  if (score > highScore) {
+    highScore = score;
+    localStorage.setItem("aimHighScore", highScore);
+    highScoreEl.textContent = highScore;
+  }
+
+  const rank = calculateRank(score, accuracy);
 
   result.innerHTML = `
-    <h2>GAME OVER</h2>
+    <h2>MISSION COMPLETE</h2>
+    <div class="rankBadge rank-${rank}">${rank}</div>
     <p>Score: ${score}</p>
     <p>Accuracy: ${accuracy}%</p>
     <p>Best Combo: ${bestCombo}</p>
   `;
+
+  drawGraph();
+}
+
+function drawGraph() {
+  chartCanvas.width = 900;
+  chartCanvas.height = 200;
+
+  ctx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+
+  ctx.strokeStyle = "#00eaff";
+  ctx.beginPath();
+
+  reactionTimes.forEach((time, index) => {
+    const x = (index / reactionTimes.length) * chartCanvas.width;
+    const y = chartCanvas.height - time / 5;
+
+    if (index === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+
+  ctx.stroke();
 }
