@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free FPS Aim Trainer Online | Valorant & CS2 Practice</title>
+
+<meta name="description" content="Free browser FPS aim trainer for Valorant and CS2 players. Improve your aim speed and reaction time online. No download required.">
+<meta name="keywords" content="fps aim trainer, valorant aim trainer, cs2 aim practice, free aim training game">
+<meta name="author" content="FPS Aim Trainer">
+<meta http-equiv="content-language" content="ko, en, pt, es, tr, zh, de, ja">
+
+<meta property="og:title" content="Free FPS Aim Trainer Online">
+<meta property="og:description" content="Train your aim like a pro. No download needed.">
+<meta property="og:type" content="website">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 data-i18n="title">FPS 에임 트레이너</h1>
+
+<div class="top-bar">
+<select id="languageSwitcher">
+<option value="ko">한국어</option>
+<option value="en">English</option>
+<option value="pt">Português</option>
+<option value="es">Español</option>
+<option value="tr">Türkçe</option>
+<option value="zh">中文</option>
+<option value="de">Deutsch</option>
+<option value="ja">日本語</option>
+</select>
+</div>
+
+<div class="modes">
+<button class="mode-btn" data-mode="easy" data-i18n="easy">쉬움</button>
+<button class="mode-btn" data-mode="hard" data-i18n="hard">어려움</button>
+<button class="mode-btn" data-mode="pro" data-i18n="pro">프로</button>
+</div>
+
+<button id="startBtn" data-i18n="start">시작</button>
+
+<div class="info">
+<p><span data-i18n="score">점수</span>: <span id="score">0</span></p>
+<p><span data-i18n="highscore">최고 기록</span>: <span id="highscore">0</span></p>
+<p><span data-i18n="reaction">평균 반응속도</span>: <span id="reactionTime">0ms</span></p>
+<p><span data-i18n="rank">랭크</span>: <span id="rank">Bronze</span></p>
+</div>
+
+<div id="gameArea"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
