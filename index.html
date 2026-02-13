@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FPS Aim Trainer</title>
+
+<meta name="description" content="High performance FPS Aim Trainer with combo system, neon effects and ranking system.">
+<meta name="robots" content="index, follow">
+
+<!-- ✅ Google Search Console Verification (추가됨) -->
+<meta name="google-site-verification" content="Q0P4SoUi3d776IVGqowZrQwqcGLKDd4nE8WMlmkJ1os" />
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- 기존 구조 그대로 유지 -->
+<div id="mobileBlock">
+  <h1>PC Only</h1>
+  <p>This game is available on desktop only.</p>
+</div>
+
+<header>
+  <h1>FPS AIM TRAINER</h1>
+  <div class="controls">
+    <button onclick="startGame('easy')">EASY</button>
+    <button onclick="startGame('hard')">HARD</button>
+    <button onclick="startGame('pro')">PRO</button>
+  </div>
+</header>
+
+<div id="hud">
+  <div>Score: <span id="score">0</span></div>
+  <div>Accuracy: <span id="accuracy">0%</span></div>
+  <div>Rank: <span id="rank">Bronze</span></div>
+</div>
+
+<div id="gameArea"></div>
+<div id="comboText"></div>
+<div id="hitMarker"></div>
+
+<footer>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="terms.html">Terms of Service</a>
+  <a href="contact.html">Contact</a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
