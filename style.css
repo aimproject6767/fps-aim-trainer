@@ -1,0 +1,129 @@
+body{
+  margin:0;
+  background:#0a0f1c;
+  font-family:Arial, Helvetica, sans-serif;
+  color:white;
+  overflow:hidden;
+  transition:0.2s;
+}
+
+#mobileBlock{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:black;
+  color:white;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:9999;
+}
+
+/* PC만 허용 */
+@media (max-width:900px){
+  #mobileBlock{ display:flex; }
+  body > *:not(#mobileBlock){ display:none; }
+}
+
+header{
+  text-align:center;
+  padding:10px;
+}
+
+.controls button{
+  margin:5px;
+  padding:10px 20px;
+  border:none;
+  background:#111;
+  color:#00f0ff;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.controls button:hover{
+  box-shadow:0 0 20px #00f0ff;
+}
+
+#hud{
+  display:flex;
+  justify-content:space-around;
+  padding:10px;
+}
+
+#gameArea{
+  position:relative;
+  width:100vw;
+  height:70vh;
+  overflow:hidden;
+}
+
+.target{
+  position:absolute;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:radial-gradient(circle,#ff004c,#6a001f);
+  box-shadow:0 0 20px #ff004c;
+  cursor:pointer;
+  transition:0.1s;
+}
+
+.target:hover{
+  transform:scale(1.1);
+}
+
+#comboText{
+  position:absolute;
+  top:40%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:50px;
+  font-weight:900;
+  color:#00f0ff;
+  text-shadow:0 0 20px #00f0ff,0 0 40px #00f0ff;
+  opacity:0;
+  pointer-events:none;
+}
+
+.comboShow{
+  animation:comboPop 0.5s ease-out;
+}
+
+@keyframes comboPop{
+  0%{transform:translate(-50%,-50%) scale(0.5);opacity:1;}
+  50%{transform:translate(-50%,-50%) scale(1.4);}
+  100%{opacity:0;}
+}
+
+/* 글로우 */
+.comboGlow{
+  box-shadow: inset 0 0 100px rgba(0,240,255,0.4);
+}
+
+.comboGlowHigh{
+  box-shadow: inset 0 0 200px rgba(255,0,150,0.6);
+}
+
+/* 20콤보 이상 왜곡 */
+.screenDistort{
+  animation:distort 0.3s infinite alternate;
+}
+
+@keyframes distort{
+  from{ transform:skewX(1deg) skewY(1deg); }
+  to{ transform:skewX(-1deg) skewY(-1deg); }
+}
+
+footer{
+  position:fixed;
+  bottom:10px;
+  width:100%;
+  text-align:center;
+}
+
+footer a{
+  margin:0 10px;
+  color:#888;
+  text-decoration:none;
+}
